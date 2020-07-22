@@ -2,10 +2,11 @@ const { STATUS_CODES } = require('http')
 
 module.exports = {
   notFound,
-  handleError
+  handleError,
+  asyncErrorHandler
 }
 
-function handleError (err, req, res, next) {
+function handleError(err, req, res, next) {
   if (res.headersSent) return next(err)
 
   if (!err.statusCode) console.error(err)
@@ -14,6 +15,15 @@ function handleError (err, req, res, next) {
   res.status(statusCode).json({ error: errorMessage })
 }
 
-function notFound (req, res) {
+function notFound(req, res) {
   res.status(404).json({ error: 'Not Found' })
+}
+
+
+
+
+function asyncErrorHandler(fn) {
+  return (req, res, next) => {
+    Promise.resolve(fn(req, res, next)).catch(next);
+  }
 }

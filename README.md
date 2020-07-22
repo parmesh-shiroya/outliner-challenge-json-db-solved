@@ -1,8 +1,12 @@
 ![Outlier.org](https://i.imgur.com/vJowpL1.png)
 
 ---
+## Note From Developer
+API POSTMAN COLLECTION : `https://www.getpostman.com/collections/86a35a6ead4c9c9993ec`
+- PUT Student API replace the content in the given property. Because it's PUT not PATCH.
+- This solution only contains the test for endpoint as mentioned in task requirements. There can be more that handle exceptions as well.
 
-# Outlier Engineering Node.js JSON DB Challenge
+# Outlier Engineering Node.js JSON DB Challenge Solved
 
 Our apps need to query and store lots of information. We want to make sure that you have a good understanding of JavaScript and Node.js fundamentals. Can you build a simple API that can read data from and write data to JSON files with Node.js while following [Outlier's best practices](https://github.com/outlier-org/onboarding/blob/master/README.md#engineering-onboarding-guide)?
 
