@@ -8,7 +8,9 @@ async function putStudent(req, res) {
     // Changing path params to the properties key ex. prop1/prop2 to prop1.prop2
     let properies = req.params[0].replace(new RegExp("\/", "g"), ".");
     studentData = immutable.set(studentData, properies, req.body)
+
     await fs.writeFile(`data/${studentId}.json`, JSON.stringify(studentData, null, 4))
+
     return res.send(studentData)
 }
 
