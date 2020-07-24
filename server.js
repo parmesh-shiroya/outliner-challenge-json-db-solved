@@ -4,7 +4,6 @@ const bodyParser = require('body-parser')
 const api = require('./api')
 const studentApi = require('./components/student/router')
 const middleware = require('./middleware')
-const { urlencoded } = require('body-parser')
 
 const PORT = process.env.PORT || 1337
 
