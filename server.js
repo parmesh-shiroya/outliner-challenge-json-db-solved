@@ -9,7 +9,8 @@ const PORT = process.env.PORT || 1337
 
 const app = express()
 
-app.use(bodyParser.json({ type: 'application/x-www-form-urlencoded' }))
+app.use(bodyParser.json({ type: 'application/x-www-form-urlencoded', }))
+app.use(bodyParser.json())
 
 app.get('/health', api.getHealth)
 app.use(studentApi)
@@ -24,3 +25,4 @@ const server = app.listen(PORT, () =>
 if (require.main !== module) {
   module.exports = server
 }
+
