@@ -6,8 +6,8 @@ async function putStudent(req, res) {
     let studentId = req.params.studentId;
     let studentData = res.studentData || {};
     // Changing path params to the properties key ex. prop1/prop2 to prop1.prop2
-    let properies = req.params[0].replace(new RegExp("\/", "g"), ".");
-    studentData = immutable.set(studentData, properies, req.body)
+    let properties = req.params[0].replace(new RegExp("\/", "g"), ".");
+    studentData = immutable.set(studentData, properties, req.body)
 
     await fs.writeFile(`data/${studentId}.json`, JSON.stringify(studentData, null, 4))
 
@@ -17,8 +17,8 @@ async function putStudent(req, res) {
 async function getStudent(req, res) {
     let studentData = res.studentData || {};
     // Changing path params to the properties key ex. prop1/prop2 to prop1.prop2
-    let properies = req.params[0].replace(new RegExp("\/", "g"), ".");
-    let properyValue = immutable.get(studentData, properies, null)
+    let properties = req.params[0].replace(new RegExp("\/", "g"), ".");
+    let properyValue = immutable.get(studentData, properties, null)
     if (!properyValue)
         return res.status(404).json({ error: 'Property Not Found' })
     return res.json(properyValue)
@@ -29,13 +29,13 @@ async function deleteStudent(req, res) {
 
     let studentData = res.studentData || {};
     // Changing path params to the properties key ex. prop1/prop2 to prop1.prop2
-    let properies = req.params[0] ? req.params[0].replace(new RegExp("\/", "g"), ".") : "";
+    let properties = req.params[0] ? req.params[0].replace(new RegExp("\/", "g"), ".") : "";
     // Check is property exists
-    let properyValue = immutable.get(studentData, properies, null)
+    let properyValue = immutable.get(studentData, properties, null)
     if (!properyValue)
         return res.status(404).json({ error: 'Property Not Found' })
     // Delete propery
-    studentData = immutable.del(studentData, properies)
+    studentData = immutable.del(studentData, properties)
     console.log(studentData)
     // After property deletion if empty array or empty object exists delete student file
     if (!studentData || (Array.isArray(studentData) && studentData.length == 0) || Object.keys(studentData).length == 0) {
